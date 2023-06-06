@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import TextToEmoji from "emojify";
+
+const emojiMapping = {
+  happy: "😀",
+  sad: "😢",
+  love: "❤️",
+  // Add more keyword-to-emoji mappings here
+};
+
+const App = () => {
+  const [value, setValue] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        type="text"
+        onChange={(e) => {
+          setValue(TextToEmoji.replaceWord(e.target.value, e));
+        }}
+        value={value}
+        style={{ width: "80%" }}
+      />
     </div>
   );
-}
+};
 
 export default App;
